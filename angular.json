@@ -22,11 +22,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "node_modules/primeng/resources/themes/nova-light/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/bootstrap3/dist/css/bootstrap.min.css",
-              "src/styles.css"            ],
+            "styles": [],
             "scripts": []
           },
           "configurations": {
