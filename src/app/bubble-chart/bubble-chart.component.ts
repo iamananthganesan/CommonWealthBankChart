@@ -1,8 +1,8 @@
-import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, AfterViewChecked } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, OnInit, ViewEncapsulation, OnChanges, AfterViewChecked } from '@angular/core';
 import * as d3 from 'd3';
 
 import { ApiServiceService } from '../shared/api-service.service';
-import {BUBBLE} from "../shared"
+import { BUBBLE } from "../shared"
 
 @Component({
   selector: 'app-bubble-chart',
@@ -11,7 +11,6 @@ import {BUBBLE} from "../shared"
 })
 export class BubbleChartComponent implements OnInit {
 
-  title = "Common Wealth Bank - Bubble Chart ";
   constructor() { }
 
   ngOnInit() {
@@ -21,7 +20,7 @@ export class BubbleChartComponent implements OnInit {
       color = d3.scaleOrdinal(d3.schemeCategory20c);
 
     var colorScale = d3.scaleLinear()
-      .domain([0, d3.max(bubbleChart_json.children, function (d) {
+      .domain([0, d3.max(bubbleChart_json, function (d) {
         return d.value;
       })])
       .range(["rgb(46, 73, 123)", "rgb(71, 187, 94)"]);
