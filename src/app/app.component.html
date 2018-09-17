@@ -1,0 +1,22 @@
+<article class="container">
+    <article class="col-md-8 col-lg-8">
+
+        <ng-container *ngIf="chooseView == 'lineChart'; else bubbleChart">
+            <app-line-chart></app-line-chart>
+        </ng-container>
+
+        <ng-template #bubbleChart>
+            <app-bubble-chart></app-bubble-chart>
+        </ng-template>
+
+    </article>
+
+
+    <article class="col-md-4 col-lg-4">
+        <h2>Chart Type: {{chooseView}}</h2>
+        <select class="form-control" [(ngModel)]="chooseView">
+            <option value="lineChart">Line Chart</option>
+            <option value="bubbleChart">Bubble Chart</option>
+        </select>
+    </article>
+</article>
