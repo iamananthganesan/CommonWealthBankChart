@@ -1,7 +1,5 @@
 
 import { Component, ViewEncapsulation, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-
-
 import { ApiServiceService } from '../shared/api-service.service';
 
 import * as d3 from 'd3';
