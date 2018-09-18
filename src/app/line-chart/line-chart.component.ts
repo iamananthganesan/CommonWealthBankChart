@@ -1,7 +1,6 @@
 
-import { Component, ViewEncapsulation, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiServiceService } from '../shared/api-service.service';
-
 import * as d3 from 'd3';
 import { STOCKS } from '../shared';
 
@@ -13,9 +12,7 @@ import { STOCKS } from '../shared';
 })
 export class LineChartComponent implements OnInit {
 
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnInit() {
 
@@ -56,7 +53,6 @@ export class LineChartComponent implements OnInit {
     this.loadChart(jsonData);
   }
   loadChart(data) {
-
     var svg = d3.select("svg"),
       margin = { top: 20, right: 20, bottom: 110, left: 40 },
       margin2 = { top: 430, right: 20, bottom: 30, left: 40 },
@@ -81,12 +77,6 @@ export class LineChartComponent implements OnInit {
     var brush = d3.brushX()
       .extent([[0, 0], [width, height2]])
       .on("brush end", brushed);
- 
-    // var zoom = d3.zoom()
-    //   .scaleExtent([1, Infinity])
-    //   .translateExtent([[0, 0], [width, height]])
-    //   .extent([[0, 0], [width, height]])
-    //   .on("zoom", zoomed);
 
     var area = d3.area()
       .curve(d3.curveLinear)
@@ -109,11 +99,6 @@ export class LineChartComponent implements OnInit {
     let focus = svg.append("g")
       .attr("class", "focus")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-
-
-
 
     var context = svg.append("g")
       .attr("class", "context")
@@ -164,8 +149,6 @@ export class LineChartComponent implements OnInit {
       .attr("cy", function (dd) { return y(dd.price) })
       .attr("fill", "white")
       .attr("stroke", "steelblue")
-
-
     // add the X gridlines
     focus.append("g")
       .attr("class", "grid")
@@ -183,37 +166,14 @@ export class LineChartComponent implements OnInit {
         .tickSize(-width)
         .tickFormat("")
       )
-    // svg.append("rect")
-    //   .attr("class", "zoom")
-    //   .attr("width", width)
-    //   .attr("height", height)
-    //   .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    //   .call(zoom);
-
+    
     function brushed() {
         
       if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
       var s = d3.event.selection || x2.range();
       x.domain(s.map(x2.invert, x2));
       focus.select(".area").attr("d", area);
-      focus.select(".axis--x").call(xAxis);
-
- 
-     //d3.select(focus).selectAll("nodeCircle-brush").remove();
-      // focus.append("g").selectAll("circle")
-      //   .data(data)
-      //   .enter()
-      //   .append("circle")
-      //   .attr("class", "nodeCircle-brush")
-      //   .attr("r", 3)
-      //   .attr("cx", function (dd) { return x(dd.date) })
-      //   .attr("cy", function (dd) { return y(dd.price) })
-      //   .attr("fill", "red")
-      //   .attr("stroke", "steelblue")
- 
- 
-        
-      
+      focus.select(".axis--x").call(xAxis);      
     }
 
     function zoomed() {
